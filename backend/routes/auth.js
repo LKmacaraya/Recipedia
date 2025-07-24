@@ -7,18 +7,18 @@ const router = express.Router();
 // Register
 router.post('/register', async (req, res) => {
   try {
-    const { username, password } = req.body;
-    if (!username || !password) {
+    const { email, username, password } = req.body;
+    if (!email || !username || !password) {
       return res.status(400).json({ message: 'Please enter all fields' });
     }
-    let user = await User.findOne({ username });
+    let user = await User.findOne({ $or: [ { username }, { email } ] });
     if (user) {
       return res.status(400).json({ message: 'User already exists' });
     }
-    user = new User({ username, password });
+    user = new User({ email, username, password });
     await user.save();
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
-    res.json({ token, user: { id: user._id, username: user.username } });
+    res.json({ token, user: { id: user._id, username: user.username, email: user.email } });
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
   }

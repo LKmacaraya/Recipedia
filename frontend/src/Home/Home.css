@@ -1,0 +1,231 @@
+/* Home component styles */
+
+.home-appbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.home-appbar.dark {
+  background: #181c1f;
+}
+.home-logo {
+  margin: 0;
+  font-weight: 700;
+}
+.home-appbar-spacer {
+  height: 76px;
+}
+.home-main {
+  background: #f8fafc;
+  border-radius: 16px;
+  min-height: 100vh;
+  color: #212529;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+}
+.home-main.dark {
+  background: #181c1f;
+  color: #f8fafc;
+}
+.home-headerbar {
+  min-height: 56px;
+}
+.home-search {
+  max-width: 220px;
+}
+.home-search.dark {
+  background: #23272b;
+  color: #f8fafc;
+}
+.home-add-btn {
+  width: 40px;
+  height: 40px;
+}
+.home-toast {
+  z-index: 9999;
+  min-width: 200px;
+}
+.home-toast.dark {
+  background: #23272b !important;
+  color: #f8fafc !important;
+}
+.home-modal-bg {
+  background: rgba(0,0,0,0.15);
+}
+.home-modal-bg.dark {
+  background: rgba(0,0,0,0.7);
+}
+.home-modal-content {
+  border-radius: 1.5rem;
+}
+.home-modal-close {
+  z-index: 2;
+}
+.home-modal-close.dark {
+  filter: invert(1);
+}
+.home-modal-body-viewrecipe {
+  max-height: 60vh;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.home-modal-body-viewrecipe::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+.home-modal-img {
+  max-height: 200px;
+  object-fit: cover;
+}
+.home-steps {
+  white-space: pre-wrap;
+  background: #f3f4f6;
+  color: #212529;
+  border-radius: 8px;
+  padding: 12px;
+}
+.home-steps.dark {
+  background: #23272b;
+  color: #f8fafc;
+}
+
+body.modal-open {
+  overflow: hidden !important;
+}
+
+/* Hamburger menu styles */
+.home-hamburger {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 4px;
+  cursor: pointer;
+  outline: none;
+  width: 38px;
+  height: 38px;
+  justify-content: center;
+  align-items: center;
+}
+.home-hamburger-bar {
+  width: 26px;
+  height: 3px;
+  background: #ff7d00;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+.home-appbar.dark .home-hamburger-bar {
+  background: #ffb347;
+}
+
+/* Sidebar overlay */
+.home-sidebar-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 1200;
+  transition: opacity 0.2s;
+}
+
+/* Sidebar drawer */
+.home-sidebar {
+  position: fixed;
+  top: 0; right: 0;
+  width: 290px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -2px 0 16px rgba(0,0,0,0.08);
+  z-index: 1300;
+  display: flex;
+  flex-direction: column;
+  animation: sidebar-slide-in 0.22s cubic-bezier(.55,0,.1,1) both;
+}
+.home-sidebar.dark {
+  background: #181c1f;
+  color: #f8fafc;
+  box-shadow: -2px 0 16px rgba(0,0,0,0.18);
+}
+@keyframes sidebar-slide-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+.home-sidebar-header {
+  border-bottom: 1px solid #eee;
+}
+.home-sidebar.dark .home-sidebar-header {
+  border-bottom: 1px solid #23272b;
+}
+.home-sidebar-options {
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+.home-sidebar-link {
+  width: 100%;
+  background: none;
+  border: none;
+  color: inherit;
+  text-align: left;
+  padding: 0.75rem 0;
+  font-size: 1.08rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background 0.13s;
+}
+.home-sidebar-link:hover,
+.home-sidebar-link:focus {
+  background: #ffe5c2;
+  outline: none;
+}
+.home-sidebar.dark .home-sidebar-link:hover,
+.home-sidebar.dark .home-sidebar-link:focus {
+  background: #2c2320;
+}
+.home-sidebar-footer {
+  margin-top: auto;
+}
+
+.home-sidebar-profilepic {
+  margin-top: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+.home-sidebar-avatar-img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #ff7d00;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: block;
+}
+.home-sidebar.dark .home-sidebar-avatar-img {
+  border-color: #ffb347;
+  background: #23272b;
+}
+@media (max-width: 600px) {
+  .home-sidebar-avatar-img {
+    width: 54px;
+    height: 54px;
+  }
+}
+
+
+.home-delete-confirm-text {
+  display: block;
+  padding: 1.5rem 1rem 1rem 1rem;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+
+/* Hide scrollbar for Bootstrap modal outer container */
+.modal.show.fade.d-block {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.modal.show.fade.d-block::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
