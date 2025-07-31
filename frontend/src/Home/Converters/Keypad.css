@@ -1,0 +1,143 @@
+.keypad {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+  margin: 1.2em 0 0.7em 0;
+  align-items: center;
+  justify-content: center;
+}
+.keypad-row {
+  display: flex;
+  gap: 0.7em;
+  justify-content: center;
+}
+.keypad-btn {
+  background: linear-gradient(180deg,#fffbe7 0%, #ffe3a3 100%);
+  color: #c96e07;
+  border: none;
+  border-radius: 1.1em;
+  font-size: 1.4em;
+  width: 3.2em;
+  height: 3.2em;
+  margin: 0.07em;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.09), 0 1.5px 2.5px rgba(255,187,51,0.10);
+  cursor: pointer;
+  transition: background 0.17s, color 0.17s, box-shadow 0.17s;
+  font-family: inherit;
+  font-weight: 700;
+  letter-spacing: 1px;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.keypad-btn:active, .keypad-btn:focus {
+  background: #ffd180;
+  color: #a65d00;
+  outline: 2px solid #ffbe40;
+}
+.keypad.dark {
+  background: none;
+}
+.keypad.dark .keypad-btn {
+  background: linear-gradient(180deg,#232323 0%, #2d2d2d 100%);
+  color: #ffbe40;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.17), 0 1.5px 2.5px rgba(255,187,51,0.18);
+}
+.keypad.dark .keypad-btn:active, .keypad.dark .keypad-btn:focus {
+  background: #333;
+  color: #ffbe40;
+  outline: 2px solid #ffbe40;
+}
+
+/* Enhanced select styling for converter selects */
+.converter-select.enhanced {
+  background: linear-gradient(180deg,#fffbe7 0%, #ffe3a3 100%);
+  color: #c96e07;
+  border: 2px solid #ffbe40;
+  border-radius: 0.5em;
+  font-size: 1.09em;
+  font-weight: 600;
+  padding: 0.5em 1.2em 0.5em 0.8em;
+  margin: 0 0.2em;
+  box-shadow: 0 1px 4px rgba(255,190,64,0.08);
+  transition: border 0.18s, box-shadow 0.18s;
+}
+.converter-select.enhanced:focus {
+  border: 2px solid #ff9100;
+  outline: none;
+}
+.converter-select.enhanced option {
+  background: #fffbe7;
+  color: #c96e07;
+}
+.keypad.dark .converter-select.enhanced {
+  background: linear-gradient(180deg,#232323 0%, #2d2d2d 100%);
+  color: #ffbe40;
+  border: 2px solid #ffbe40;
+}
+.keypad.dark .converter-select.enhanced option {
+  background: #232323;
+  color: #ffbe40;
+}
+
+.enhanced-result {
+  animation: popin 0.25s cubic-bezier(.5,1.6,.4,1.1);
+}
+@keyframes popin {
+  0% { transform: scale(0.85); opacity: 0.2; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.keypad-row {
+  display: flex;
+  gap: 0.5em;
+}
+.keypad-btn {
+  background: linear-gradient(180deg,#fffbe7 0%, #ffe3a3 100%);
+  color: #c96e07;
+  border: none;
+  border-radius: 0.5em;
+  font-size: 1.2em;
+  width: 3em;
+  height: 2.5em;
+  margin: 0.1em;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07), 0 1.5px 2.5px rgba(255,187,51,0.08);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.keypad-btn:active, .keypad-btn:focus {
+  background: #ffd180;
+  color: #a65d00;
+  outline: 2px solid #ffbe40;
+}
+.keypad-btn.keypad-enter {
+  background: #ffbe40;
+  color: #fff;
+  font-weight: bold;
+}
+.keypad-btn.keypad-enter:active, .keypad-btn.keypad-enter:focus {
+  background: #ff9100;
+  color: #fffbe7;
+}
+.keypad.dark {
+  background: none;
+}
+.keypad.dark .keypad-btn {
+  background: linear-gradient(180deg,#232323 0%, #2d2d2d 100%);
+  color: #ffbe40;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2), 0 1.5px 2.5px rgba(255,187,51,0.13);
+}
+.keypad.dark .keypad-btn:active, .keypad.dark .keypad-btn:focus {
+  background: #333;
+  color: #ffbe40;
+  outline: 2px solid #ffbe40;
+}
+.keypad.dark .keypad-btn.keypad-enter {
+  background: #ffbe40;
+  color: #232323;
+}
+.keypad.dark .keypad-btn.keypad-enter:active, .keypad.dark .keypad-btn.keypad-enter:focus {
+  background: #ff9100;
+  color: #fffbe7;
+}

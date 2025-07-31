@@ -5,7 +5,7 @@ import './Profile.css';
 const DEFAULT_AVATAR = 'https://media.istockphoto.com/id/2219141543/photo/3d-render-chef-woman-avatar-for-culinary-and-restaurant-illustration.webp?a=1&b=1&s=612x612&w=0&k=20&c=V6BlF7eOGuqtVVWNC1wuD84zjVmi95Z5UPI1Klt6OQA=';
 
 
-export default function Profile({ user, onSave, darkMode }) {
+export default function Profile({ user, onSave, darkMode, setCurrentPage }) {
   const [profile, setProfile] = useState({
     name: '',
     address: '',
@@ -19,6 +19,7 @@ export default function Profile({ user, onSave, darkMode }) {
   const [avatarFile, setAvatarFile] = useState(null);
   const [saving, setSaving] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [showSuccess, setShowSuccess] = useState(false);
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -74,6 +75,8 @@ export default function Profile({ user, onSave, darkMode }) {
       setProfile(res.data);
       setAvatarPreview(res.data.avatar || DEFAULT_AVATAR);
       onSave && onSave(res.data);
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 2100);
     } catch (err) {
       alert('Failed to save profile.');
     } finally {
@@ -82,7 +85,20 @@ export default function Profile({ user, onSave, darkMode }) {
   };
   if (loading) return <div className={`profile-page${darkMode ? ' dark' : ''}`}>Loading...</div>;
   return (
-    <div className={`profile-page${darkMode ? ' dark' : ''}`}>
+    <>
+      <div className="profile-header-row">
+        <button className="btn profile-back-btn" style={{fontSize: darkMode ? '1.05rem' : '1.3rem'}} onClick={() => setCurrentPage('home')} title="Back" aria-label="Back">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{verticalAlign:'middle'}} width="1.5em" height="1.5em"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 5 12 12 19"/></svg>
+        </button>
+        <span className="profile-header-title">Edit Profile</span>
+      </div>
+      {showSuccess && (
+        <div className="profile-success-modal" role="alert" aria-live="polite">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="10" cy="10" r="9.2" fill="#22bb55"/><polyline points="6.2 10.7 9 13.5 14 8.5" stroke="#fff" strokeWidth="2.2"/></svg>
+          Profile saved successfully!
+        </div>
+      )}
+      <div className={`profile-page${darkMode ? ' dark' : ''}`}>
       <div className="profile-card mx-auto">
         <div className="profile-avatar-wrapper mx-auto mb-3">
           <img
@@ -177,9 +193,10 @@ export default function Profile({ user, onSave, darkMode }) {
       placeholder="Tell us about yourself..."
     />
   </div>
-  <button type="submit" className="btn btn-primary w-100" disabled={saving}>{saving ? 'Saving...' : 'Save Profile'}</button>
+  <button type="submit" className="btn btn-primary w-100 profile-save-btn" disabled={saving}>{saving ? 'Saving...' : 'Save Profile'}</button>
 </form>
       </div>
     </div>
+    </>
   );
 }

@@ -18,6 +18,9 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/recipes', require('./routes/recipes'));
 app.use('/api/profile', require('./routes/profile'));
 app.use('/api/avatar', require('./routes/avatarUpload'));
+app.use('/api/users', require('./routes/userSettings'));
+app.use('/api/posts', require('./routes/posts'));
+app.use('/api/checklist', require('./routes/checklist'));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Connect to MongoDB

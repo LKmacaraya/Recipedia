@@ -1,0 +1,128 @@
+/* Account Settings Page Styles */
+.account-settings-page {
+  min-height: 100vh;
+  background: #f8fafc;
+  padding: 3rem 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.account-settings-page.dark {
+  background: #181c1f;
+  color: #f8fafc;
+}
+.account-settings-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.account-settings-page.dark .account-settings-card {
+  background: #23272b;
+  color: #f8fafc;
+}
+.account-settings-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  font-family: 'Playwrite AU QLD', 'Segoe UI', Arial, sans-serif;
+  color: #ff7d00;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.01em;
+}
+.account-settings-form {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+.account-settings-form .form-label {
+  font-family: 'Dosis', Arial, sans-serif;
+  font-size: 1.09rem;
+  color: #ff7d00;
+  font-weight: 600;
+  text-align: left;
+  display: block;
+  width: 100%;
+  margin-bottom: 0.18rem;
+  letter-spacing: 0.01em;
+  transition: color 0.23s;
+}
+.account-settings-form .form-control {
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 1.07rem;
+  border-radius: 10px;
+  border: 1.5px solid #e2e2e2;
+  background: #fff;
+  color: #212529;
+  transition: border-color 0.22s, box-shadow 0.22s, background 0.22s;
+  box-shadow: 0 1px 6px rgba(255,125,0,0.03);
+  padding: 0.65rem 1rem;
+  outline: none;
+}
+.account-settings-form .form-control:focus {
+  border-color: #ff7d00;
+  background: #fffbe7;
+  box-shadow: 0 2px 12px rgba(255,125,0,0.09);
+}
+.account-settings-page.dark .account-settings-form .form-control {
+  background: #23272b;
+  color: #f8fafc;
+  border: 1.5px solid #444;
+}
+.account-settings-page.dark .account-settings-form .form-control:focus {
+  border-color: #ffb347;
+  background: #2c2320;
+  box-shadow: 0 2px 12px rgba(255,179,71,0.10);
+}
+.account-settings-error {
+  color: #e74c3c;
+  background: #ffeaea;
+  border-radius: 7px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.7rem;
+  font-size: 1.01rem;
+  text-align: center;
+}
+.account-settings-success {
+  color: #22bb55;
+  background: #eaffea;
+  border-radius: 7px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.7rem;
+  font-size: 1.01rem;
+  text-align: center;
+}
+.account-settings-save-btn {
+  background: #ff7d00 !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  border-radius: 12px !important;
+  font-family: 'Playwrite AU QLD', 'Segoe UI', Arial, sans-serif !important;
+  box-shadow: 0 2px 8px rgba(255,125,0,0.13) !important;
+  transition: background 0.2s, box-shadow 0.2s !important;
+  padding: 0.75rem 0 !important;
+  font-size: 1.14rem !important;
+  outline: none !important;
+  width: 100% !important;
+  margin-top: 0.8rem !important;
+}
+.account-settings-page.dark .account-settings-save-btn {
+  background: #ffb347 !important;
+  color: #23272b !important;
+}
+.account-settings-save-btn:active,
+.account-settings-save-btn:focus,
+.account-settings-save-btn:hover {
+  filter: brightness(0.95) !important;
+  background: #e86e00 !important;
+}
+@media (max-width: 600px) {
+  .account-settings-card {
+    padding: 1.2rem 0.6rem 1rem 0.6rem;
+  }
+}

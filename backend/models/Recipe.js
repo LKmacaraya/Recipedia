@@ -21,6 +21,19 @@ const RecipeSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
+  },
+  ownerId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    // required: true  // Now optional
+  },
+  ownerName: {
+    type: String,
+    // required: true  // Now optional
+  },
+  ownerAvatar: {
+    type: String,
+    default: ''
   }
 }, {
   timestamps: true

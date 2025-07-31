@@ -5,7 +5,7 @@ const auth = require('../middleware/auth');
 const router = express.Router();
 
 // Get all recipes for the logged-in user, with optional search
-router.get('/', auth, async (req, res) => {
+router.get('/', auth.authenticateToken, async (req, res) => {
   try {
     const { search } = req.query;
     let query = { userId: req.user._id };
@@ -20,7 +20,7 @@ router.get('/', auth, async (req, res) => {
 });
 
 // Add a new recipe
-router.post('/', auth, async (req, res) => {
+router.post('/', auth.authenticateToken, async (req, res) => {
   try {
     const { name, image, steps } = req.body;
     if (!name || !image || !steps) {
@@ -40,7 +40,7 @@ router.post('/', auth, async (req, res) => {
 });
 
 // Update a recipe
-router.put('/:id', auth, async (req, res) => {
+router.put('/:id', auth.authenticateToken, async (req, res) => {
   try {
     const { name, image, steps } = req.body;
     const recipe = await Recipe.findOneAndUpdate(
@@ -58,7 +58,7 @@ router.put('/:id', auth, async (req, res) => {
 });
 
 // Delete a recipe
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', auth.authenticateToken, async (req, res) => {
   try {
     const recipe = await Recipe.findOneAndDelete({ _id: req.params.id, userId: req.user._id });
     if (!recipe) {
@@ -67,6 +67,31 @@ router.delete('/:id', auth, async (req, res) => {
     res.json({ message: 'Recipe deleted' });
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Save a post as a recipe for the current user, with owner credit
+router.post('/from-post/:postId', auth.authenticateToken, async (req, res) => {
+  try {
+    const Post = require('../models/Post');
+    const post = await Post.findById(req.params.postId).populate('user', 'username avatar');
+    if (!post) return res.status(404).json({ message: 'Post not found' });
+    // Prevent duplicate saves (same post, same user)
+    const existing = await Recipe.findOne({ userId: req.user._id, ownerId: post.user._id, name: post.title });
+    if (existing) return res.status(400).json({ message: 'Recipe already saved' });
+    const recipe = new Recipe({
+      name: post.title,
+      image: post.image,
+      steps: post.steps,
+      userId: req.user._id,
+      ownerId: post.user._id,
+      ownerName: post.user.username,
+      ownerAvatar: post.user.avatar || '',
+    });
+    await recipe.save();
+    res.status(201).json(recipe);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 

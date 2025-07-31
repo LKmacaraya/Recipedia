@@ -5,7 +5,7 @@ const User = require('../models/User');
 const auth = require('../middleware/auth');
 
 // Get current user's profile
-router.get('/me', auth, async (req, res) => {
+router.get('/me', auth.authenticateToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
     if (!user) {
@@ -41,7 +41,7 @@ router.get('/me', auth, async (req, res) => {
 });
 
 // Update current user's profile
-router.put('/me', auth, async (req, res) => {
+router.put('/me', auth.authenticateToken, async (req, res) => {
   try {
     console.log('Profile update body:', req.body);
     // Ignore email from req.body, always use User.email
@@ -68,10 +68,35 @@ router.put('/me', auth, async (req, res) => {
 });
 
 // Get profile by userId (for admin or public viewing)
-router.get('/:userId', auth, async (req, res) => {
+const mongoose = require('mongoose');
+
+router.get('/:userId', auth.authenticateToken, async (req, res) => {
   try {
-    const profile = await Profile.findOne({ userId: req.params.userId });
-    if (!profile) return res.status(404).json({ error: 'Profile not found' });
+    const userId = mongoose.Types.ObjectId.isValid(req.params.userId)
+      ? new mongoose.Types.ObjectId(req.params.userId)
+      : null;
+    if (!userId) {
+      return res.status(400).json({ error: 'Invalid userId' });
+    }
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    let profile = await Profile.findOne({ userId });
+    if (!profile) {
+      // Create a default profile if missing, like /me
+      profile = new Profile({
+        userId,
+        name: user.username,
+        email: user.email,
+        avatar: '',
+        address: '',
+        gender: 'Rather not Say',
+        hobbies: '',
+        bio: ''
+      });
+      await profile.save();
+    }
     res.json(profile);
   } catch (err) {
     res.status(500).json({ error: err.message });

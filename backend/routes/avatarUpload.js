@@ -28,7 +28,7 @@ const upload = multer({
 });
 
 // POST /api/avatar/upload
-router.post('/upload', auth, upload.single('avatar'), (req, res) => {
+router.post('/upload', auth.authenticateToken, upload.single('avatar'), (req, res) => {
   if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
   const url = `/uploads/avatars/${req.file.filename}`;
   res.json({ url });
