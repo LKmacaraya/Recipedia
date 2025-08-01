@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: recipedia-backend
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        fromDatabase:
+          name: recipedia-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+    plan: free
