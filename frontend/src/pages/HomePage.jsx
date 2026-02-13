@@ -13,7 +13,7 @@ const HomePage = () => {
 
   const fetchRecipes = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/recipes`);
+      const response = await axios.get(`https://recipedia-m8ji.onrender.com/recipes`);
       setRecipes(response.data);
     } catch (err) {
       console.error(err);

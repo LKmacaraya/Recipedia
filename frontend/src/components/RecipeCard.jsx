@@ -14,7 +14,7 @@ const RecipeCard = ({ recipe, fetchRecipes }) => {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this recipe?")) {
       try {
-        await axios.delete(`http://localhost:5000/recipes/${recipe._id}`, {
+        await axios.delete(`https://recipedia-m8ji.onrender.com/recipes/${recipe._id}`, {
           headers: { "x-auth-token": userData.token }
         });
         toast({

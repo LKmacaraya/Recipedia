@@ -9,10 +9,10 @@
   justify-content: flex-start;
   position: relative;
   width: 100%;
-  max-width: 640px;
+  max-width: 680px;
   margin: 0 auto;
   min-height: 70vh;
-  padding-top: 3.5rem;
+  padding-top: 1rem;
   gap: 2.2rem;
 }
 
@@ -27,10 +27,8 @@
 
 
 .no-recipes-message {
-  position: absolute;
-  top: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+  position: static;
+  margin-top: 0.5rem;
   padding: 1.2rem 2.5rem;
   background: rgba(255, 213, 79, 0.85);
   border-radius: 18px;
@@ -43,8 +41,8 @@
 }
 
 .fab-newpost {
-  width: 68px;
-  height: 68px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   background: linear-gradient(135deg, #ffd54f 0%, #ff7043 100%);
   color: #fff;
@@ -58,12 +56,16 @@
   cursor: pointer;
   z-index: 1100;
   position: fixed;
-  bottom: 2.5rem;
-  right: 2.5rem;
+  bottom: calc(1.6rem + env(safe-area-inset-bottom));
+  right: 1.25rem;
   transition: background 0.18s, box-shadow 0.18s, transform 0.16s;
   outline: none;
   padding: 0;
   animation: fabPulse 1.6s infinite alternate;
+}
+.fab-newpost svg {
+  width: 100%;
+  height: 100%;
 }
 .fab-newpost:hover, .fab-newpost:focus {
   background: linear-gradient(135deg, #ff7043 0%, #ffd54f 100%);
@@ -125,26 +127,35 @@
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
   z-index: 1050;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(8px);
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 .home-appbar.dark {
-  background: #181c1f;
+  background: rgba(24, 28, 31, 0.88);
 }
 .home-logo {
   margin: 0;
   font-weight: 700;
+  color: #ff7d00;
+}
+.home-appbar.dark .home-logo {
+  color: #ffb347;
 }
 .home-appbar-spacer {
-  height: 76px;
+  height: 84px;
 }
 .home-main {
-  background: #f8fafc;
-  border-radius: 16px;
+  background: #fff;
+  border-radius: 20px;
   min-height: 100vh;
   color: #212529;
   box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+  width: min(100%, 920px);
+  margin: 0 auto;
+  padding-bottom: 5.5rem;
 }
 .home-main.dark {
   background: #181c1f;
@@ -152,6 +163,7 @@
 }
 .home-headerbar {
   min-height: 56px;
+  margin-bottom: 1rem !important;
 }
 .home-search {
   max-width: 220px;
@@ -418,7 +430,7 @@ body.modal-open {
 .home-sidebar {
   position: fixed;
   top: 0; right: 0;
-  width: 290px;
+  width: min(84vw, 320px);
   height: 100vh;
   background: #fff;
   box-shadow: -2px 0 16px rgba(0,0,0,0.08);
@@ -515,7 +527,7 @@ body.modal-open {
 }
 @media (max-width: 600px) {
   .home-sidebar {
-    width: 220px;
+    width: min(92vw, 290px);
   }
   .home-sidebar-avatar-img {
     width: 64px;
@@ -539,4 +551,46 @@ body.modal-open {
 }
 .modal.show.fade.d-block::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
+}
+
+@media (max-width: 992px) {
+  .home-main {
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-appbar {
+    padding-left: 0.9rem !important;
+    padding-right: 0.9rem !important;
+    padding-top: 0.85rem !important;
+    padding-bottom: 0.7rem !important;
+  }
+
+  .home-appbar-spacer {
+    height: 72px;
+  }
+
+  .home-main {
+    border-radius: 12px;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  .home-feed-container {
+    gap: 1.2rem;
+  }
+
+  .fab-newpost {
+    width: 58px;
+    height: 58px;
+    right: 0.85rem;
+    bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+
+  .no-recipes-message {
+    width: 100%;
+    padding: 0.95rem 1rem;
+    font-size: 1rem;
+  }
 }

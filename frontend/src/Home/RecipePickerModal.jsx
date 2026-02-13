@@ -11,7 +11,7 @@ export default function RecipePickerModal({ show, onClose, onPick, user, token }
   useEffect(() => {
     if (!show) return;
     setLoading(true);
-    axios.get('http://localhost:5000/api/recipes', {
+    axios.get('https://recipedia-m8ji.onrender.com/api/recipes', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => {

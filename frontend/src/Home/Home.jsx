@@ -23,7 +23,7 @@ function Home() {
   async function handleSave(post) {
     try {
       // Try to save as recipe for current user
-      await axios.post(`http://localhost:5000/api/recipes/from-post/${post._id}`, {}, {
+      await axios.post(`https://recipedia-m8ji.onrender.com/api/recipes/from-post/${post._id}`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setSnackbar({ open: true, message: 'Recipe saved to My Recipes!', type: 'success' });
@@ -41,7 +41,7 @@ function Home() {
   // Fetch profile from backend and sync user state
   async function fetchUserProfile() {
     try {
-      const res = await axios.get('http://localhost:5000/api/profile/me', {
+      const res = await axios.get('https://recipedia-m8ji.onrender.com/api/profile/me', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUser(res.data);
@@ -83,7 +83,7 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
       async function fetchProfile() {
         setLoading(true);
         try {
-          const res = await window.axios.get(`http://localhost:5000/api/profile/${userId}`, {
+          const res = await window.axios.get(`https://recipedia-m8ji.onrender.com/api/profile/${userId}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           if (mounted) setProfile(res.data);
@@ -177,7 +177,7 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
   const fetchPosts = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5000/api/posts', {
+      const res = await axios.get('https://recipedia-m8ji.onrender.com/api/posts', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPosts(res.data);
@@ -209,7 +209,7 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
         : p
     ));
     try {
-      const res = await axios.post(`http://localhost:5000/api/posts/${post._id}/comment`, { text }, {
+      const res = await axios.post(`https://recipedia-m8ji.onrender.com/api/posts/${post._id}/comment`, { text }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       // Replace optimistic comment with real one (by refetching or updating in place)
@@ -256,7 +256,7 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
           : p
       )
     );
-    axios.post(`http://localhost:5000/api/posts/${post._id}/heart`, {}, {
+    axios.post(`https://recipedia-m8ji.onrender.com/api/posts/${post._id}/heart`, {}, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .catch(() => {
@@ -323,7 +323,7 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
     <>
       {/* App Bar */}
       <div className={`w-100 d-flex justify-content-between align-items-center px-4 pt-3 pb-2 home-appbar${darkMode ? ' dark' : ''}`}>
-        <h1 className="recipedia-logo home-logo" style={{color: darkMode ? '#ffb347' : '#ff7d00'}}>Recipedia.</h1>
+        <h1 className="recipedia-logo home-logo">Recipedia.</h1>
         <div className="d-flex align-items-center gap-2 gap-md-3">
           {/* Hamburger menu button */}
           <button className="header-btn home-hamburger" onClick={() => setSidebarOpen(true)} title="Open menu" aria-label="Open menu">
@@ -359,7 +359,7 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
             {/* Sidebar Profile Picture */}
             <div className="home-sidebar-profilepic mb-3 d-flex flex-column align-items-center">
               <img
-                src={user?.avatar && user.avatar.startsWith('/') ? `http://localhost:5000${user.avatar}` : (user?.avatar || 'https://media.istockphoto.com/id/2219141543/photo/3d-render-chef-woman-avatar-for-culinary-and-restaurant-illustration.webp?a=1&b=1&s=612x612&w=0&k=20&c=V6BlF7eOGuqtVVWNC1wuD84zjVmi95Z5UPI1Klt6OQA=')}
+                src={user?.avatar && user.avatar.startsWith('/') ? `https://recipedia-m8ji.onrender.com${user.avatar}` : (user?.avatar || 'https://media.istockphoto.com/id/2219141543/photo/3d-render-chef-woman-avatar-for-culinary-and-restaurant-illustration.webp?a=1&b=1&s=612x612&w=0&k=20&c=V6BlF7eOGuqtVVWNC1wuD84zjVmi95Z5UPI1Klt6OQA=')}
                 alt="Profile"
                 className="home-sidebar-avatar-img"
                 style={{cursor:'pointer'}}
@@ -395,7 +395,7 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
       )}
 
       <div className="home-appbar-spacer"></div>
-      <div className={`container py-4 px-2 px-md-4 home-main${darkMode ? ' dark' : ''}`} style={{background: darkMode ? '#181c1f' : '#fff', minHeight: '100vh'}}>
+      <div className={`container py-4 px-2 px-md-4 home-main${darkMode ? ' dark' : ''}`}>
 
       {/* Header Bar */}
       <div className="d-flex flex-row justify-content-end align-items-center mb-4 gap-2 gap-md-4 home-headerbar">
@@ -405,15 +405,8 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
           className="fab-newpost"
           aria-label="Create New Post"
           onClick={() => setShowNewPost(true)}
-          style={{
-            width: '64px', height: '64px', borderRadius: '50%',
-            background: 'linear-gradient(135deg, #ffd54f 0%, #ff7043 100%)',
-            color: '#fff', fontSize: '2.7rem', fontWeight: 900,
-            boxShadow: '0 6px 24px rgba(255, 87, 34, 0.22)',
-            border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', zIndex: 1100, position: 'fixed', bottom: '2.5rem', right: '2.5rem', transition: 'background 0.18s, box-shadow 0.18s', outline: 'none', padding: 0
-          }}
         >
-          <FaPlusCircle style={{width:'100%',height:'100%'}} />
+          <FaPlusCircle />
         </button>
         {/* Social Feed */}
         <div className="home-feed-container">
@@ -434,7 +427,7 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
                 onComment={handleComment}
                 onImageClick={handleImageClick}
                 onDelete={async (post) => {
-                  await axios.delete(`http://localhost:5000/api/posts/${post._id}`, {
+                  await axios.delete(`https://recipedia-m8ji.onrender.com/api/posts/${post._id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                   });
                   fetchPosts();
@@ -477,7 +470,7 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
           token={token}
           onPick={async (recipe) => {
             // Send recipe as a new post
-            await axios.post('http://localhost:5000/api/posts', {
+            await axios.post('https://recipedia-m8ji.onrender.com/api/posts', {
               title: recipe.name || recipe.title,
               steps: recipe.steps,
               image: recipe.image,
@@ -500,37 +493,5 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
     </>
   );
 }
-
-
-
-// Floating Action Button Style
-const fabStyle = document.createElement('style');
-fabStyle.innerHTML = `
-.fab-newpost {
-  position: fixed;
-  bottom: 2.5rem;
-  right: 2.5rem;
-  z-index: 1100;
-  width: 61px;
-  height: 61px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ffd54f 0%, #ff7043 100%);
-  color: #fff;
-  font-size: 2.5rem;
-  font-weight: 900;
-  box-shadow: 0 4px 18px rgba(255, 87, 34, 0.18);
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.18s, box-shadow 0.18s;
-}
-.fab-newpost:hover {
-  background: linear-gradient(135deg, #ff7043 0%, #ffd54f 100%);
-  box-shadow: 0 6px 24px rgba(255, 87, 34, 0.28);
-}
-`;
-document.head.appendChild(fabStyle);
 
 export default Home;

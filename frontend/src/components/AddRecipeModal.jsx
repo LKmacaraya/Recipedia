@@ -13,7 +13,7 @@ const AddRecipeModal = ({ isOpen, onClose, fetchRecipes }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/recipes/add`,
+      await axios.post(`https://recipedia-m8ji.onrender.com/recipes/add`,
         { name, imageUrl, steps },
         { headers: { "x-auth-token": userData.token } }
       );

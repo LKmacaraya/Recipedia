@@ -15,7 +15,7 @@ export default function Checklist({ user, token, setCurrentPage }) {
     if (!token) return;
     setLoading(true);
     setError('');
-    axios.get('http://localhost:5000/api/checklist', {
+    axios.get('https://recipedia-m8ji.onrender.com/api/checklist', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => {
@@ -32,7 +32,7 @@ export default function Checklist({ user, token, setCurrentPage }) {
     if (!input.trim()) return;
     setError('');
     try {
-      const res = await axios.post('http://localhost:5000/api/checklist', { text: input }, {
+      const res = await axios.post('https://recipedia-m8ji.onrender.com/api/checklist', { text: input }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setItems(prev => [res.data, ...prev]);
@@ -47,7 +47,7 @@ export default function Checklist({ user, token, setCurrentPage }) {
     if (!item) return;
     setError('');
     try {
-      const res = await axios.put(`http://localhost:5000/api/checklist/${id}`, { done: !item.done }, {
+      const res = await axios.put(`https://recipedia-m8ji.onrender.com/api/checklist/${id}`, { done: !item.done }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setItems(prev => prev.map(i => i._id === id ? res.data : i));
@@ -59,7 +59,7 @@ export default function Checklist({ user, token, setCurrentPage }) {
   const handleDelete = async (id) => {
     setError('');
     try {
-      await axios.delete(`http://localhost:5000/api/checklist/${id}`, {
+      await axios.delete(`https://recipedia-m8ji.onrender.com/api/checklist/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setItems(prev => prev.filter(i => i._id !== id));
@@ -71,7 +71,7 @@ export default function Checklist({ user, token, setCurrentPage }) {
   const handleEdit = async (id, newText) => {
     setError('');
     try {
-      const res = await axios.put(`http://localhost:5000/api/checklist/${id}`, { text: newText }, {
+      const res = await axios.put(`https://recipedia-m8ji.onrender.com/api/checklist/${id}`, { text: newText }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setItems(prev => prev.map(i => i._id === id ? res.data : i));

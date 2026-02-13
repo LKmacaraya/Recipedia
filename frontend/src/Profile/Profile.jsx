@@ -26,7 +26,7 @@ export default function Profile({ user, onSave, darkMode, setCurrentPage }) {
     // Fetch profile from backend
     async function fetchProfile() {
       try {
-        const res = await axios.get('http://localhost:5000/api/profile/me', {
+        const res = await axios.get('https://recipedia-m8ji.onrender.com/api/profile/me', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setProfile(res.data);
@@ -53,7 +53,7 @@ export default function Profile({ user, onSave, darkMode, setCurrentPage }) {
       try {
         const formData = new FormData();
         formData.append('avatar', file);
-        const uploadRes = await axios.post('http://localhost:5000/api/avatar/upload', formData, {
+        const uploadRes = await axios.post('https://recipedia-m8ji.onrender.com/api/avatar/upload', formData, {
           headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${token}` }
         });
         setProfile(prev => ({ ...prev, avatar: uploadRes.data.url }));
@@ -67,7 +67,7 @@ export default function Profile({ user, onSave, darkMode, setCurrentPage }) {
     e.preventDefault();
     setSaving(true);
     try {
-      const res = await axios.put('http://localhost:5000/api/profile/me', {
+      const res = await axios.put('https://recipedia-m8ji.onrender.com/api/profile/me', {
         ...profile,
       }, {
         headers: { Authorization: `Bearer ${token}` }
@@ -102,7 +102,7 @@ export default function Profile({ user, onSave, darkMode, setCurrentPage }) {
       <div className="profile-card mx-auto">
         <div className="profile-avatar-wrapper mx-auto mb-3">
           <img
-            src={avatarPreview && avatarPreview.startsWith('/') ? `http://localhost:5000${avatarPreview}` : avatarPreview}
+            src={avatarPreview && avatarPreview.startsWith('/') ? `https://recipedia-m8ji.onrender.com${avatarPreview}` : avatarPreview}
             alt="Profile"
             className="profile-avatar-img"
           />

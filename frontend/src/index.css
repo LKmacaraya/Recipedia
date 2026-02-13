@@ -1,47 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --brand-orange: #ff7d00;
+  --brand-orange-soft: #ffb347;
+  --bg-light: #fff8f2;
+  --surface-light: #ffffff;
+  --text-light: #1f2933;
+  --bg-dark: #161a1d;
+  --surface-dark: #23272b;
+  --text-dark: #f8fafc;
+  font-family: 'Roboto', Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #181c1f !important;
-  color: #f8fafc !important;
-}
-body:not(.dark) {
-  background: #fff !important;
-  color: #212529 !important;
 }
 
-body.dark, html.dark {
-  background: #181c1f !important;
-  color: #f8fafc !important;
+body {
+  background: radial-gradient(circle at top right, #ffe9d2 0%, var(--bg-light) 45%, #fff 100%);
+  color: var(--text-light);
+}
+
+body.dark {
+  background: radial-gradient(circle at top right, #282e33 0%, var(--bg-dark) 45%, #101416 100%);
+  color: var(--text-dark);
 }
 
 body.dark .container,
 body.dark .card,
-body.dark .modal,
 body.dark .modal-content,
 body.dark .card-footer,
 body.dark .card-body,
@@ -50,114 +51,65 @@ body.dark .toast,
 body.dark .modal-header,
 body.dark .modal-footer,
 body.dark .modal-body {
-  background-color: #23272b !important;
-  color: #f8fafc !important;
-  border-color: #444 !important;
+  background-color: var(--surface-dark) !important;
+  color: var(--text-dark) !important;
+  border-color: #3f464d !important;
 }
-body.dark .modal {
-  background: rgba(0,0,0,0.7) !important;
-}
-body.dark .form-control {
-  background: #23272b !important;
-  color: #f8fafc !important;
-  border: 1px solid #444 !important;
-}
+
 body.dark .form-control::placeholder {
-  color: #f8fafc !important;
+  color: #d1d5db !important;
   opacity: 1;
 }
+
 body.dark .btn-close {
   filter: invert(1);
 }
-body.dark ::-webkit-scrollbar {
-  width: 0px;
-  background: transparent;
-}
-body.dark ::-webkit-scrollbar-thumb {
-  background: transparent;
-}
-html, body {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-html::-webkit-scrollbar, body::-webkit-scrollbar {
-  width: 0 !important;
-  height: 0 !important;
-  background: transparent !important;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.recipedia-logo {
+  font-family: 'Dosis', Arial, sans-serif;
 }
 
+a {
+  color: var(--brand-orange);
+  text-decoration: none;
+}
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a:hover {
+  color: #e06600;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
 }
+
 .header-btn {
   background: transparent;
   border: none;
-  color: #f8fafc;
-  font-size: 1.6rem;
-  transition: background 0.18s, color 0.18s;
+  color: inherit;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  padding: 0.4em 0.7em;
-}
-.header-btn svg {
-  color: inherit;
-  transition: color 0.18s;
-}
-body.dark .header-btn {
-  color: #f8fafc;
-}
-body.dark .header-btn:hover, body.dark .header-btn:focus {
-  background: #343a40;
-  color: #ffe066;
-  outline: none;
-}
-body.dark .header-btn:hover svg, body.dark .header-btn:focus svg {
-  color: #ffe066;
-}
-body:not(.dark) .header-btn {
-  color: #213547;
-}
-body:not(.dark) .header-btn:hover, body:not(.dark) .header-btn:focus {
-  background: #f3f4f6;
-  color: #ffb300;
-  outline: none;
-}
-body:not(.dark) .header-btn:hover svg, body:not(.dark) .header-btn:focus svg {
-  color: #ffb300;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  border-radius: 10px;
+  padding: 0.45rem 0.65rem;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+body:not(.dark) .header-btn:hover,
+body:not(.dark) .header-btn:focus {
+  background: #fff0df;
+  color: var(--brand-orange);
+  outline: none;
+}
+
+body.dark .header-btn:hover,
+body.dark .header-btn:focus {
+  background: #2d343a;
+  color: var(--brand-orange-soft);
+  outline: none;
 }

@@ -12,7 +12,7 @@ export default function ProfileModal({ user, open, onClose }) {
         <button className="profile-modal-close" onClick={onClose}>×</button>
         <img
           className="profile-modal-avatar"
-          src={user.avatar ? (user.avatar.startsWith('http') ? user.avatar : `http://localhost:5000${user.avatar}`) : '/default-avatar.png'}
+          src={user.avatar ? (user.avatar.startsWith('http') ? user.avatar : `https://recipedia-m8ji.onrender.com${user.avatar}`) : '/default-avatar.png'}
           alt="avatar"
         />
         <h2 className="profile-modal-username">{user.username}</h2>

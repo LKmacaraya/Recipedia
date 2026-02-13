@@ -28,7 +28,7 @@ export default function HomePostCard({ post, userId, onHeart, onSave, onComment,
               post.user?.avatar
                 ? post.user.avatar.startsWith('http')
                   ? post.user.avatar
-                  : `http://localhost:5000${post.user.avatar}`
+                  : `https://recipedia-m8ji.onrender.com${post.user.avatar}`
                 : '/default-avatar.png'
             }
             alt="avatar"
@@ -98,7 +98,7 @@ export default function HomePostCard({ post, userId, onHeart, onSave, onComment,
                   c.user?.avatar
                     ? c.user.avatar.startsWith('http')
                       ? c.user.avatar
-                      : `http://localhost:5000${c.user.avatar}`
+                      : `https://recipedia-m8ji.onrender.com${c.user.avatar}`
                     : '/default-avatar.png'
                 }
                 alt="avatar"

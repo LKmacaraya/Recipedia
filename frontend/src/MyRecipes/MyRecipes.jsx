@@ -58,7 +58,7 @@ export default function MyRecipes({ user, darkMode, setCurrentPage }) {
 
   const fetchRecipes = () => {
     setLoading(true);
-    axios.get('http://localhost:5000/api/recipes', {
+    axios.get('https://recipedia-m8ji.onrender.com/api/recipes', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => {
@@ -120,12 +120,12 @@ export default function MyRecipes({ user, darkMode, setCurrentPage }) {
     setActionLoading(true);
     try {
       if (modalType === 'add') {
-        await axios.post('http://localhost:5000/api/recipes', form, {
+        await axios.post('https://recipedia-m8ji.onrender.com/api/recipes', form, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setToast({ show: true, message: 'Recipe added!', type: 'success' });
       } else if (modalType === 'edit' && currentRecipe) {
-        await axios.put(`http://localhost:5000/api/recipes/${currentRecipe._id}`, form, {
+        await axios.put(`https://recipedia-m8ji.onrender.com/api/recipes/${currentRecipe._id}`, form, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setToast({ show: true, message: 'Recipe updated!', type: 'success' });
@@ -143,7 +143,7 @@ export default function MyRecipes({ user, darkMode, setCurrentPage }) {
   const handleDelete = async (recipe) => {
     setActionLoading(true);
     try {
-      await axios.delete(`http://localhost:5000/api/recipes/${recipe._id}`, {
+      await axios.delete(`https://recipedia-m8ji.onrender.com/api/recipes/${recipe._id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchRecipes();

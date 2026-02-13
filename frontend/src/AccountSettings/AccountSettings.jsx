@@ -19,7 +19,7 @@ export default function AccountSettings({ darkMode, setCurrentPage, onSave }) {
     async function fetchSettings() {
       setLoading(true);
       try {
-        const res = await axios.get('http://localhost:5000/api/users/me', {
+        const res = await axios.get('https://recipedia-m8ji.onrender.com/api/users/me', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setForm(f => ({ ...f, username: res.data.username || '', email: res.data.email || '' }));
@@ -50,7 +50,7 @@ export default function AccountSettings({ darkMode, setCurrentPage, onSave }) {
     }
     setSaving(true);
     try {
-      const res = await axios.put('http://localhost:5000/api/users/settings', {
+      const res = await axios.put('https://recipedia-m8ji.onrender.com/api/users/settings', {
         username: form.username,
         email: form.email,
         password: form.password ? form.password : undefined

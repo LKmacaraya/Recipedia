@@ -12,7 +12,7 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/users/register`, { username, password });
+      await axios.post(`https://recipedia-m8ji.onrender.com/users/register`, { username, password });
       toast({
         title: 'Account created.',
         description: "We've created your account for you.",

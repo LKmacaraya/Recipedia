@@ -14,7 +14,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const loginRes = await axios.post(`http://localhost:5000/users/login`, { username, password });
+      const loginRes = await axios.post(`https://recipedia-m8ji.onrender.com/users/login`, { username, password });
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,

@@ -35,7 +35,7 @@ const EditRecipeModal = ({ isOpen, onClose, fetchRecipes, recipe }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/recipes/update/${recipe._id}`,
+      await axios.post(`https://recipedia-m8ji.onrender.com/recipes/update/${recipe._id}`,
         { name, imageUrl, steps },
         { headers: { "x-auth-token": userData.token } }
       );
