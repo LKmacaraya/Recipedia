@@ -396,6 +396,18 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
 
       <div className="home-appbar-spacer"></div>
       <div className={`container py-4 px-2 px-md-4 home-main${darkMode ? ' dark' : ''}`}>
+      <section className={`home-hero${darkMode ? ' dark' : ''}`}>
+        <div className="home-hero-copy">
+          <p className="home-hero-kicker">Dashboard</p>
+          <h2 className="home-hero-title">Welcome back, {user?.username || 'Chef'}.</h2>
+          <p className="home-hero-subtitle">Browse fresh recipes from the community and post your own creations.</p>
+        </div>
+        <div className="home-hero-stat-card">
+          <span className="home-hero-stat-label">Live Feed</span>
+          <span className="home-hero-stat-value">{posts.length}</span>
+          <span className="home-hero-stat-caption">recipes shared</span>
+        </div>
+      </section>
 
       {/* Header Bar */}
       <div className="d-flex flex-row justify-content-end align-items-center mb-4 gap-2 gap-md-4 home-headerbar">

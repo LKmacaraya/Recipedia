@@ -262,3 +262,186 @@
     gap: 0.35rem;
   }
 }
+
+/* Dashboard card refresh */
+.home-post-card {
+  background: linear-gradient(165deg, #fffdf8 0%, #fff4e4 100%);
+  border: 1px solid rgba(233, 149, 22, 0.24);
+  border-radius: 22px;
+  box-shadow: 0 14px 26px rgba(172, 107, 17, 0.08);
+  max-width: 720px;
+  padding: 1.05rem 1.05rem 0.95rem;
+  margin-bottom: 0.55rem;
+}
+
+.home-post-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(172, 107, 17, 0.13);
+}
+
+.home-post-header {
+  margin-bottom: 0.78rem;
+}
+
+.home-post-avatar {
+  border: 2px solid #f27f24;
+  width: 46px;
+  height: 46px;
+}
+
+.home-post-username {
+  font-family: 'Sora', sans-serif;
+  font-size: 1rem;
+  color: #2c1907;
+}
+
+.home-post-date {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.78rem;
+  color: #8c6642;
+}
+
+.home-post-image-container {
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(66, 29, 2, 0.1);
+}
+
+.home-post-image {
+  height: 300px;
+}
+
+.home-post-credit {
+  margin: 0.75rem 0 0.2rem;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.84rem;
+  color: #8d6131;
+}
+
+.home-post-title {
+  margin-top: 0;
+  margin-bottom: 0.1rem;
+  font-family: 'Sora', sans-serif;
+  font-size: 1.08rem;
+  color: #251507;
+}
+
+.home-post-actions {
+  margin-top: 0.7rem;
+  gap: 0.5rem;
+  border-top: 1px solid rgba(209, 133, 31, 0.2);
+  padding-top: 0.4rem;
+}
+
+.home-post-actions button {
+  border-radius: 999px;
+  padding: 0.46rem 0.72rem;
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.07rem;
+}
+
+.home-heart-btn,
+.home-save-btn,
+.home-comment-btn {
+  color: #cc5a18;
+}
+
+.home-heart-btn.hearted {
+  color: #c3253e;
+  background: #ffe7ec;
+}
+
+.home-save-btn.saved {
+  color: #0a7993;
+  background: #dff8ff;
+}
+
+.home-post-comments {
+  margin-top: 0.55rem;
+  background: #fff8ed;
+  border: 1px solid rgba(197, 126, 25, 0.21);
+  border-radius: 14px;
+  box-shadow: none;
+}
+
+.home-post-comment-username {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.91rem;
+  color: #3a220c;
+}
+
+.home-post-comment-date {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.75rem;
+}
+
+.home-post-comment-text {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.94rem;
+  color: #422f1e;
+}
+
+.home-post-comment-input {
+  border: 1px solid #d8b18a;
+  background: #fff;
+  font-family: 'Manrope', sans-serif;
+}
+
+.home-post-comment-submit {
+  border-radius: 9px;
+  font-family: 'Manrope', sans-serif;
+  background: linear-gradient(120deg, #f27d24 0%, #d9502a 100%);
+}
+
+.home-post-comment-submit:hover {
+  background: linear-gradient(120deg, #e46f17 0%, #c64523 100%);
+}
+
+body.dark .home-post-card {
+  background: linear-gradient(165deg, #242d34 0%, #1d262c 100%);
+  border: 1px solid rgba(255, 179, 71, 0.2);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.32);
+}
+
+body.dark .home-post-username,
+body.dark .home-post-title {
+  color: #fff4e4;
+}
+
+body.dark .home-post-credit {
+  color: #d3b089;
+}
+
+body.dark .home-post-date {
+  color: #c8ab8a;
+}
+
+body.dark .home-post-actions {
+  border-top-color: rgba(255, 183, 97, 0.17);
+}
+
+body.dark .home-post-comments {
+  background: #1a2228;
+  border-color: rgba(255, 183, 97, 0.2);
+}
+
+body.dark .home-post-comment-text,
+body.dark .home-post-comment-username {
+  color: #f0dfca;
+}
+
+body.dark .home-post-comment-input {
+  background: #263039;
+  border-color: #41505e;
+  color: #f6ece0;
+}
+
+@media (max-width: 700px) {
+  .home-post-card {
+    border-radius: 18px;
+    padding: 0.88rem 0.88rem 0.82rem;
+  }
+
+  .home-post-image {
+    height: 230px;
+  }
+}
