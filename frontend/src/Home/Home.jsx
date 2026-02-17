@@ -69,6 +69,11 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
     }, 220); // match CSS animation duration
   }
 
+  function handleSidebarNavigate(page) {
+    setCurrentPage(page);
+    handleSidebarClose();
+  }
+
 
   const [currentPage, setCurrentPage] = useState('home'); // 'home', 'profile', 'settings'
   const [showProfileModal, setShowProfileModal] = useState(false);
@@ -354,9 +359,8 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
           <aside className={`home-sidebar${darkMode ? ' dark' : ''}${sidebarClosing ? ' closing' : ''}`} tabIndex="-1">
             <div className="home-sidebar-header d-flex justify-content-between align-items-center px-3 pt-3 pb-2">
               <span className="fw-bold">Menu</span>
-              <button className="btn-close" style={{zIndex:2}} onClick={() => handleSidebarClose()} aria-label="Close sidebar"></button>
+              <button className="btn-close home-sidebar-close-btn" style={{zIndex:2}} onClick={() => handleSidebarClose()} aria-label="Close sidebar"></button>
             </div>
-            {/* Sidebar Profile Picture */}
             <div className="home-sidebar-profilepic mb-3 d-flex flex-column align-items-center">
               <img
                 src={user?.avatar && user.avatar.startsWith('/') ? `https://recipedia-m8ji.onrender.com${user.avatar}` : (user?.avatar || 'https://media.istockphoto.com/id/2219141543/photo/3d-render-chef-woman-avatar-for-culinary-and-restaurant-illustration.webp?a=1&b=1&s=612x612&w=0&k=20&c=V6BlF7eOGuqtVVWNC1wuD84zjVmi95Z5UPI1Klt6OQA=')}
@@ -370,25 +374,41 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
                   }
                 }}
               />
+              <div className="home-sidebar-usercopy">
+                <h3>{user?.username || 'Chef'}</h3>
+                <p>{user?.email || 'No email available'}</p>
+              </div>
             </div>
             <div className="home-sidebar-options">
-              <button className="home-sidebar-link" onClick={() => setCurrentPage('profile')}>
-                <FaUser className="me-2" /> Profile
-              </button>             
-              <button className="home-sidebar-link" onClick={() => setCurrentPage('myrecipes')}><FaBookOpen className="me-2" /> My Recipes</button>
-              <button className="home-sidebar-link" onClick={() => setCurrentPage('checklist')}>
-  <FaCheckSquare className="me-2" /> Checklist
-</button>
-<button className="home-sidebar-link" onClick={() => setCurrentPage('costcalculator')}>
-  <FaCalculator className="me-2" /> Cost Calculator
-</button>
-              <button className="home-sidebar-link" onClick={() => setCurrentPage('settings')}>
-                <FaCog className="me-2" /> Account Settings
+              <button className={`home-sidebar-link${currentPage === 'profile' ? ' active' : ''}`} onClick={() => handleSidebarNavigate('profile')}>
+                <span className="home-sidebar-link-icon"><FaUser /></span>
+                <span className="home-sidebar-link-label">Profile</span>
+                <span className="home-sidebar-link-arrow" aria-hidden="true">›</span>
+              </button>
+              <button className={`home-sidebar-link${currentPage === 'myrecipes' ? ' active' : ''}`} onClick={() => handleSidebarNavigate('myrecipes')}>
+                <span className="home-sidebar-link-icon"><FaBookOpen /></span>
+                <span className="home-sidebar-link-label">My Recipes</span>
+                <span className="home-sidebar-link-arrow" aria-hidden="true">›</span>
+              </button>
+              <button className={`home-sidebar-link${currentPage === 'checklist' ? ' active' : ''}`} onClick={() => handleSidebarNavigate('checklist')}>
+                <span className="home-sidebar-link-icon"><FaCheckSquare /></span>
+                <span className="home-sidebar-link-label">Checklist</span>
+                <span className="home-sidebar-link-arrow" aria-hidden="true">›</span>
+              </button>
+              <button className={`home-sidebar-link${currentPage === 'costcalculator' ? ' active' : ''}`} onClick={() => handleSidebarNavigate('costcalculator')}>
+                <span className="home-sidebar-link-icon"><FaCalculator /></span>
+                <span className="home-sidebar-link-label">Cost Calculator</span>
+                <span className="home-sidebar-link-arrow" aria-hidden="true">›</span>
+              </button>
+              <button className={`home-sidebar-link${currentPage === 'settings' ? ' active' : ''}`} onClick={() => handleSidebarNavigate('settings')}>
+                <span className="home-sidebar-link-icon"><FaCog /></span>
+                <span className="home-sidebar-link-label">Account Settings</span>
+                <span className="home-sidebar-link-arrow" aria-hidden="true">›</span>
               </button>
             </div>
             <div className="home-sidebar-footer mt-auto px-3 pb-4 d-flex flex-column gap-2">
-              <button className="btn btn-outline-secondary w-100 d-flex align-items-center gap-2 justify-content-center" onClick={handleLogout}><FaSignOutAlt /> Logout</button>
-              <button className="btn btn-outline-secondary w-100 d-flex align-items-center gap-2 justify-content-center" onClick={() => setDarkMode(!darkMode)}>{darkMode ? <FaSun /> : <FaMoon />} {darkMode ? 'Light' : 'Dark'} Mode</button>
+              <button className="home-sidebar-action home-sidebar-action-logout" onClick={handleLogout}><FaSignOutAlt /> Logout</button>
+              <button className="home-sidebar-action home-sidebar-action-theme" onClick={() => setDarkMode(!darkMode)}>{darkMode ? <FaSun /> : <FaMoon />} {darkMode ? 'Light' : 'Dark'} Mode</button>
             </div>
           </aside>
         </>
