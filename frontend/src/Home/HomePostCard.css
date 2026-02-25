@@ -445,3 +445,100 @@ body.dark .home-post-comment-input {
     height: 230px;
   }
 }
+
+/* Feed card redesign */
+.home-post-card {
+  position: relative;
+  border: 1px solid rgba(223, 141, 44, 0.24);
+  background:
+    radial-gradient(360px 140px at 105% -12%, rgba(255, 170, 85, 0.16), transparent 68%),
+    linear-gradient(165deg, #fffef9 0%, #fff4e5 100%);
+  box-shadow: 0 18px 32px rgba(148, 84, 19, 0.09);
+}
+
+.home-post-header {
+  gap: 0.8rem;
+}
+
+.home-post-avatar {
+  width: 48px;
+  height: 48px;
+  border-width: 2.5px;
+  box-shadow: 0 6px 14px rgba(239, 126, 27, 0.18);
+}
+
+.home-post-credit {
+  margin-top: 0.62rem;
+}
+
+.home-post-title {
+  line-height: 1.25;
+}
+
+.home-post-actions {
+  gap: 0.4rem;
+}
+
+.home-post-actions button {
+  border: 1px solid rgba(204, 121, 31, 0.22);
+  background: rgba(255, 253, 247, 0.72);
+  min-width: 44px;
+  min-height: 40px;
+}
+
+.home-post-actions button span {
+  font-size: 0.86rem;
+  font-weight: 700;
+  font-family: 'Manrope', sans-serif;
+}
+
+.home-post-actions button:hover,
+.home-post-actions button:focus {
+  background: rgba(255, 235, 210, 0.9);
+  border-color: rgba(204, 121, 31, 0.3);
+}
+
+.home-heart-btn.hearted {
+  border-color: rgba(200, 57, 82, 0.32);
+}
+
+.home-save-btn.saved {
+  border-color: rgba(10, 121, 147, 0.36);
+}
+
+.home-post-comment-avatar {
+  border-color: #f18a2d;
+}
+
+.home-post-comment-submit {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+body.dark .home-post-card {
+  border-color: rgba(255, 186, 112, 0.22);
+  background:
+    radial-gradient(360px 140px at 105% -12%, rgba(255, 188, 116, 0.13), transparent 70%),
+    linear-gradient(165deg, #212a31 0%, #1a2229 100%);
+}
+
+body.dark .home-post-actions button {
+  border-color: rgba(255, 190, 122, 0.22);
+  background: rgba(36, 46, 54, 0.85);
+}
+
+body.dark .home-post-actions button:hover,
+body.dark .home-post-actions button:focus {
+  background: rgba(53, 65, 76, 0.95);
+}
+
+@media (max-width: 700px) {
+  .home-post-actions button {
+    min-width: 40px;
+    min-height: 38px;
+  }
+
+  .home-post-actions button span {
+    font-size: 0.8rem;
+  }
+}

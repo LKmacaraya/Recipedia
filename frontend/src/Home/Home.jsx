@@ -383,27 +383,27 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
               <button className={`home-sidebar-link${currentPage === 'profile' ? ' active' : ''}`} onClick={() => handleSidebarNavigate('profile')}>
                 <span className="home-sidebar-link-icon"><FaUser /></span>
                 <span className="home-sidebar-link-label">Profile</span>
-                <span className="home-sidebar-link-arrow" aria-hidden="true">›</span>
+                <span className="home-sidebar-link-arrow" aria-hidden="true">&gt;</span>
               </button>
               <button className={`home-sidebar-link${currentPage === 'myrecipes' ? ' active' : ''}`} onClick={() => handleSidebarNavigate('myrecipes')}>
                 <span className="home-sidebar-link-icon"><FaBookOpen /></span>
                 <span className="home-sidebar-link-label">My Recipes</span>
-                <span className="home-sidebar-link-arrow" aria-hidden="true">›</span>
+                <span className="home-sidebar-link-arrow" aria-hidden="true">&gt;</span>
               </button>
               <button className={`home-sidebar-link${currentPage === 'checklist' ? ' active' : ''}`} onClick={() => handleSidebarNavigate('checklist')}>
                 <span className="home-sidebar-link-icon"><FaCheckSquare /></span>
                 <span className="home-sidebar-link-label">Checklist</span>
-                <span className="home-sidebar-link-arrow" aria-hidden="true">›</span>
+                <span className="home-sidebar-link-arrow" aria-hidden="true">&gt;</span>
               </button>
               <button className={`home-sidebar-link${currentPage === 'costcalculator' ? ' active' : ''}`} onClick={() => handleSidebarNavigate('costcalculator')}>
                 <span className="home-sidebar-link-icon"><FaCalculator /></span>
                 <span className="home-sidebar-link-label">Cost Calculator</span>
-                <span className="home-sidebar-link-arrow" aria-hidden="true">›</span>
+                <span className="home-sidebar-link-arrow" aria-hidden="true">&gt;</span>
               </button>
               <button className={`home-sidebar-link${currentPage === 'settings' ? ' active' : ''}`} onClick={() => handleSidebarNavigate('settings')}>
                 <span className="home-sidebar-link-icon"><FaCog /></span>
                 <span className="home-sidebar-link-label">Account Settings</span>
-                <span className="home-sidebar-link-arrow" aria-hidden="true">›</span>
+                <span className="home-sidebar-link-arrow" aria-hidden="true">&gt;</span>
               </button>
             </div>
             <div className="home-sidebar-footer mt-auto px-3 pb-4 d-flex flex-column gap-2">
@@ -429,10 +429,22 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
         </div>
       </section>
 
-      {/* Header Bar */}
-      <div className="d-flex flex-row justify-content-end align-items-center mb-4 gap-2 gap-md-4 home-headerbar">
-        
-        {/* Floating Action Button for New Post */}
+      <section className="home-feed-section">
+        <div className={`home-feed-header${darkMode ? ' dark' : ''}`}>
+          <div>
+            <p className="home-feed-kicker">Community Feed</p>
+            <h3 className="home-feed-title">Latest shared recipes</h3>
+          </div>
+          <button
+            className="home-feed-create-btn"
+            aria-label="Create New Post"
+            onClick={() => setShowNewPost(true)}
+          >
+            <FaPlusCircle />
+            <span>Create Post</span>
+          </button>
+        </div>
+
         <button
           className="fab-newpost"
           aria-label="Create New Post"
@@ -440,7 +452,7 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
         >
           <FaPlusCircle />
         </button>
-        {/* Social Feed */}
+
         <div className="home-feed-container">
           {loading ? (
             <div className="text-center py-5"><div className="spinner-border text-primary"></div></div>
@@ -477,6 +489,7 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
             ))
           )}
         </div>
+      </section>
 
         {/* Modal for Recipe Steps */}
         {viewModal && viewPost && (
