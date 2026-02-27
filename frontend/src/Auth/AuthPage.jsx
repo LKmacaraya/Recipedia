@@ -43,9 +43,9 @@ function AuthPage() {
       setRegError('Passwords do not match.'); return;
     }
     try {
-      await axios.post('https://recipedia-m8ji.onrender.com/api/auth/register', { email: regEmail, username: regUsername, password: regPassword });
-      setRegSuccess('Registration successful! You can now login.');
-      setTimeout(() => switchToLogin(), 1200);
+      const res = await axios.post('https://recipedia-m8ji.onrender.com/api/auth/register', { email: regEmail, username: regUsername, password: regPassword });
+      localStorage.setItem('token', res.data.token);
+      navigate('/');
     } catch (err) {
       setRegError(err.response?.data?.message || 'Registration failed');
     }

@@ -47,6 +47,10 @@ function Home() {
       setUser(res.data);
     } catch (err) {
       setUser(null); // explicitly clear user on error
+      if (err.response && (err.response.status === 401 || err.response.status === 403)) {
+        localStorage.removeItem('token');
+        navigate('/login');
+      }
     }
   }
 
@@ -186,15 +190,23 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
         headers: { Authorization: `Bearer ${token}` }
       });
       setPosts(res.data);
-      setLoading(false);
     } catch (err) {
       setError('Failed to load posts.');
+      if (err.response && (err.response.status === 401 || err.response.status === 403)) {
+        localStorage.removeItem('token');
+        navigate('/login');
+      }
+    } finally {
       setLoading(false);
     }
   };
 
   // Optimistic comment handler
   const handleComment = async (post, text) => {
+    if (!user) {
+      setSnackbar({ open: true, message: 'You must be logged in to comment.', type: 'error' });
+      return;
+    }
     const userId = user._id;
     // Prepare optimistic comment object
     const optimisticComment = {
@@ -533,7 +545,6 @@ const [sidebarClosing, setSidebarClosing] = useState(false);
         {snackbar.message}
       </div>
     )}
-    </div>
     </div>
     </>
   );
