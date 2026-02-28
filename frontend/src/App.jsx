@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import AuthPage from './Auth/AuthPage';
-import Home from './Home/Home';
+import AuthPage from './pages/AuthPage';
+import Home from './pages/HomePage';
 import './App.css';
 
 function App() {
