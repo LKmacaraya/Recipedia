@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './AccountSettings.css';
+import './AccountSettingsPage.css';
 
 export default function AccountSettings({ darkMode, setCurrentPage, onSave }) {
   const [showPassword, setShowPassword] = useState(false);

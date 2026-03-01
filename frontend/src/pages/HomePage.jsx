@@ -4,16 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { FaSignOutAlt, FaSun, FaMoon, FaCog, FaBookOpen, FaUser } from 'react-icons/fa';
 import './HomePage.css';
 import { FaPlusCircle } from 'react-icons/fa';
-import Profile from '../Profile/Profile';
-import Checklist from './Checklist';
-import CostCalculator from './CostCalculator';
+import Profile from './ProfilePage';
+import Checklist from '../components/Checklist';
+import CostCalculator from '../components/CostCalculator';
 import { FaCheckSquare, FaCalculator } from 'react-icons/fa';
-import AccountSettings from '../AccountSettings/AccountSettings';
-import MyRecipes from '../MyRecipes/MyRecipes';
-import HomePostCard from './HomePostCard';
-import './HomePostCard.css';
-import RecipePickerModal from './RecipePickerModal';
-import './RecipePickerModal.css';
+import AccountSettings from './AccountSettingsPage';
+import MyRecipes from './MyRecipesPage';
+import HomePostCard from '../components/HomePostCard';
+import RecipePickerModal from '../components/RecipePickerModal';
 
 function HomePage() {
   const token = localStorage.getItem('token');
